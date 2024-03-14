@@ -1,0 +1,21 @@
+{
+    "name": "hexlet/slimexample",
+    "autoload": {
+        "psr-4": {
+            "Hexlet\\Slimexample\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "DzmitryV",
+            "email": "vlasenko.dmitry1@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^4.13",
+        "slim/psr7": "^1.6",
+        "slim/http": "^1.3",
+        "slim/php-view": "^3.2",
+        "php-di/php-di": "^7.0"
+    }
+}
