@@ -1,0 +1,39 @@
+<?php if ($status === "404") : ?>
+   <p> <?= "Page not found. Error 404."?> </p>
+<?php else: ?>
+   <table>
+        <?php foreach ($user as $info) : ?>
+            <?php foreach ($info as $key => $value) : ?>
+                <tr>
+                    <td>
+                        <?= htmlspecialchars($key) ?> : <?= htmlspecialchars($value) ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php endforeach; ?>
+    </table>
+<?php endif; ?>
+
+
+
+
+<form action="/posts" method="post">
+<div>
+    <label for="name"></label>
+    <input type="text" id="name" value=<?= htmlspecialchars($name) ?>>
+    <?php if (!empty($errors['name'])) : ?>
+        <label for="errorName"></label>
+        <input type="text" id="errorName" name="info[name]" value=<?= htmlspecialchars($errors['name']) ?>>
+    <?php endif; ?>
+
+    <label for="body"></label>
+    <input type="text" id="body" value=<?= htmlspecialchars($body) ?>>>
+    <?php if (!empty($errors['body'])) : ?>
+        <label for="errorName"></label>
+        <input type="text" id="errorName" name="info[body]" value=<?= htmlspecialchars($errors['body']) ?>>
+    <?php endif; ?>
+
+    <input type="submit" value="Submit">
+</div>
+</form>
+

@@ -2,11 +2,15 @@
     <input type="search" name="user" value="<?= htmlspecialchars($term) ?>">
     <input type="submit" value="Search" >
 </form>
-
+<div>
+    <p><?= htmlspecialchars($messages['success'][0]) ?></p>
+</div>
 <table>
     <?php foreach ($users as $user) : ?>
     <tr>
-        <td><?= htmlspecialchars($user) ?></td>
+        <td><?= htmlspecialchars($user["id"]) ?></td>
+        <td><?= htmlspecialchars($user["name"]) ?></td>
+        <td><?= htmlspecialchars($user["email"]) ?></td>
     </tr>
     <?php endforeach; ?>
 </table>
