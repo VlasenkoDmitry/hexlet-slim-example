@@ -1,0 +1,32 @@
+<?php $userInfo = reset($user); ?>
+<form action='/user/<?= htmlspecialchars($userInfo["id"]) ?>' method="post">
+<input type="hidden" name="_METHOD" value="PATCH">
+    <div>   
+        <label for="name">
+            Nickname
+            <input type="text" name="user[name]" value='<?= htmlspecialchars($userInfo['name']) ?>'>
+        </label>
+    </div>
+    <?php if (!empty($errors["name"])) : ?>
+        <div>
+            <p><?=htmlspecialchars($errors["name"])?></p>
+        </div>
+    <?php endif; ?>
+    <div>    
+        <label for="email">
+            Email
+            <input type="text" name="user[email]" value='<?= htmlspecialchars($userInfo['email']) ?>'>
+        </label>
+    </div>
+    <?php if (!empty($errors["email"])) : ?>
+        <div>
+            <p><?=htmlspecialchars($errors["email"])?></p>
+        </div>
+    <?php endif; ?>
+    <input type="submit" value="Update">
+</form>
+
+<form action='/user/<?= htmlspecialchars($userInfo["id"]) ?>' method="post">
+<input type="hidden" name="_METHOD" value="DELETE">
+<input type="submit" value="Delete">
+</form>

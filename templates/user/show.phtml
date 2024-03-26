@@ -16,24 +16,3 @@
 
 
 
-
-<form action="/posts" method="post">
-<div>
-    <label for="name"></label>
-    <input type="text" id="name" value=<?= htmlspecialchars($name) ?>>
-    <?php if (!empty($errors['name'])) : ?>
-        <label for="errorName"></label>
-        <input type="text" id="errorName" name="info[name]" value=<?= htmlspecialchars($errors['name']) ?>>
-    <?php endif; ?>
-
-    <label for="body"></label>
-    <input type="text" id="body" value=<?= htmlspecialchars($body) ?>>>
-    <?php if (!empty($errors['body'])) : ?>
-        <label for="errorName"></label>
-        <input type="text" id="errorName" name="info[body]" value=<?= htmlspecialchars($errors['body']) ?>>
-    <?php endif; ?>
-
-    <input type="submit" value="Submit">
-</div>
-</form>
-
