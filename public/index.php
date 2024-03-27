@@ -185,5 +185,46 @@ $app->delete('/user/{id}', function($request, $response, $args) use ($router) {
     return $response->withRedirect($url);
 });
 
+
+
+
+$app->get('/main', function ($request, $response) {
+    $cart = json_decode($request->getCookieParam('cart', json_encode([])), true);
+    $params = [
+        'cart' => $cart
+    ];   
+    return $this->get('renderer')->render($response, 'main/index.phtml', $params);
+});
+
+// BEGIN (write your solution here)
+$app->post('/cart-items', function ($request, $response) {
+    $item = $request->getParsedBodyParam('item');
+    $cookie = json_decode($request->getCookieParam('cart', json_encode([])), true);
+
+
+    if (!array_key_exists($item['name'], $cookie)) {
+        $item['count'] = 1;
+        $cookie[$item['name']] = $item;
+    } else {
+        $cookie[$item['name']]['count'] += 1;
+    }
+
+      // Кодирование корзины
+    $encodedCart = json_encode($cookie);
+
+    // Установка новой корзины в куку
+    return $response->withHeader('Set-Cookie', "cart={$encodedCart}")
+        ->withRedirect('/main');
+
+});
+
+
+$app->delete('/cart-items', function ($request, $response) {
+    $encodedCart = json_encode([]);
+    return $response->withHeader('Set-Cookie', "cart={$encodedCart}")
+        ->withRedirect('/main');
+});
+
+
 $app->run();
 
